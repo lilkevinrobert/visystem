@@ -51,7 +51,7 @@
                 android:drawablePadding="10dp"
                 android:hint="username"
                 android:inputType="text"
-                android:contentDescription="username"
+                android:contentDescription="@string/username"
                 android:padding="10dp" />
 
             <EditText
@@ -63,6 +63,7 @@
                 android:drawableStart="@drawable/baseline_perm_identity_24"
                 android:drawablePadding="10dp"
                 android:hint="student id"
+                android:contentDescription="@string/student_id"
                 android:inputType="text"
                 android:padding="10dp" />
 
@@ -76,6 +77,7 @@
                 android:drawablePadding="10dp"
                 android:hint="Name"
                 android:inputType="text"
+                android:contentDescription="@string/student_name"
                 android:padding="10dp" />
 
 
@@ -88,6 +90,7 @@
                 android:drawableStart="@drawable/baseline_password_24"
                 android:drawablePadding="10dp"
                 android:hint="Password"
+                android:contentDescription="@string/password"
                 android:inputType="textPassword"
                 android:padding="10dp" />
 
@@ -100,6 +103,7 @@
                 android:drawableStart="@drawable/baseline_password_24"
                 android:drawablePadding="10dp"
                 android:hint="Confirm Password"
+                android:contentDescription="@string/confirm_password"
                 android:inputType="textPassword"
                 android:padding="10dp" />
 
@@ -112,6 +116,7 @@
                 android:background="@drawable/custom_button"
                 android:backgroundTint="#ffffff"
                 android:enabled="true"
+                android:contentDescription="@string/register"
                 android:text="Register" />
 
 
