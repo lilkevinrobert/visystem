@@ -1,3 +1,14 @@
 <resources>
+
     <string name="app_name">vi-system</string>
+
+    <!-- Register student attributes   -->
+    <string name="username">username</string>
+    <string name="student_id">student id</string>
+    <string name="student_name">student name</string>
+    <string name="password">password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="register">register button</string>
+
+    <!-- Login student attributes   -->
 </resources>
