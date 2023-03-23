@@ -7,6 +7,6 @@ class User(
       var role: String
 ){
 
-
+    constructor() : this("", "", "","")
 
 }
