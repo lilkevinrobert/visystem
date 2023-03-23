@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             val _studentId = studentId.text.toString().trim()
             val _password = password.text.toString().trim()
 
-            if (validate(studentId = _studentId, password =_password)){
+            if (validate(studentId = _studentId, password = _password)) {
                 Toast.makeText(this, "Input to login authentication", Toast.LENGTH_SHORT).show()
             }
 
@@ -39,32 +39,37 @@ class LoginActivity : AppCompatActivity() {
         //Open Register Activity
         openRegisterTextView = findViewById(R.id.openRegisterActivity)
         openRegisterTextView.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
     }
 
 
     //Login validations
-    private fun validate(studentId: String, password :String): Boolean{
+    private fun validate(studentId: String, password: String): Boolean {
 
-        //when statement
-        if (studentId.isNotEmpty() && password.isNotEmpty()){
-            return true
-        }
-        if (studentId.isNotEmpty() || password.isEmpty()){
+        if (studentId.isNotEmpty() || password.isEmpty()) {
             toastMessage("Password cannot be blank")
             return false
         }
-        if (studentId.isEmpty() || password.isNotEmpty()){
+        if (studentId.isEmpty() || password.isNotEmpty()) {
+            toastMessage("StudentId cannot be blank")
+            return false
+        }
+
+        if (studentId.isEmpty() && password.isEmpty()) {
             toastMessage("StudentId and Password cannot be blank")
             return false
+        }
+        //when statement
+        if (studentId.isNotEmpty() && password.isNotEmpty()) {
+            return true
         }
         return false
     }
 
     //Validation failure toast
-    private fun toastMessage(message: String){
-        Toast.makeText(this, "Validation Failure: $message", Toast.LENGTH_LONG).show()
+    private fun toastMessage(message: String) {
+        Toast.makeText(this, "Validation Failed: $message", Toast.LENGTH_LONG).show()
     }
 }
