@@ -52,12 +52,6 @@ class RegisterActivity : AppCompatActivity() {
         openLoginActivity = findViewById(R.id.openLoginActivity)
 
 
-//        Toast.makeText(this, _username, Toast.LENGTH_SHORT).show()
-
-//        if (_cpassword == _password) {
-//            registerStudent(User(_username, _studentId, _studentName, "student"))
-//        }
-
 
         registerButton.setOnClickListener {
             val _username = username.text.toString()
@@ -81,12 +75,11 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerStudent(user: User) {
         val userId = user.userId.replace("/", "_", ignoreCase = true)
 
-
         //checking  if the userId(StudentID) already exist in the realtime database
         databaseReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    Toast.makeText(this@RegisterActivity, "userID already exist", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Student ID already exist", Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this@RegisterActivity, "Not exist userId", Toast.LENGTH_SHORT).show()
@@ -111,7 +104,7 @@ class RegisterActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         registerButton.isEnabled = false
 
-        Log.d("EmailTest", "Email: $email")
+        Log.d("EmailTest", "Email: $email $password")
         mAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

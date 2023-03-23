@@ -12,6 +12,15 @@
         android:theme="@style/Theme.Visystem"
         tools:targetApi="31">
         <activity
+            android:name=".student.StudentDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".lecturer.LecturerDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.RegisterActivity"
             android:exported="false" />
         <activity
