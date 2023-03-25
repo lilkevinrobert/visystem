@@ -1,7 +1,6 @@
 package com.example.vi_system.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,7 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vi_system.R
 import com.example.vi_system.admin.AdminDashboardActivity
 import com.example.vi_system.lecturer.LecturerDashboardActivity
@@ -18,10 +17,8 @@ import com.example.vi_system.util.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.google.protobuf.Value
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var openRegisterTextView: TextView
@@ -72,6 +69,28 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = mAuth.currentUser
+        if(currentUser != null){
+            //reload()
+            Log.d("EMAIL", "onStart: ${currentUser.email?.trim()}")
+            val query: Query = databaseReference.orderByValue().equalTo(currentUser.email?.trim())
+            query.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("USER_DETAIL", "onDataChange: ${snapshot.getValue<User>().toString()}")
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
+        }
     }
 
     private fun loginUser(email: String, password: String, userId: String) {

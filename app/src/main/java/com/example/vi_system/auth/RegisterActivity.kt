@@ -52,7 +52,6 @@ class RegisterActivity : AppCompatActivity() {
         openLoginActivity = findViewById(R.id.openLoginActivity)
 
 
-
         registerButton.setOnClickListener {
             val _username = username.text.toString()
             val _studentId = studentId.text.toString()
@@ -61,7 +60,11 @@ class RegisterActivity : AppCompatActivity() {
             val _cpassword = confirmPassword.text.toString()
 
             if (_cpassword == _password) {
-                registerStudent(User(_username, _studentId, _studentName, "student"))
+                //converting the student Id to Email for registration
+                val email = _studentId.lowercase()
+                    .replace("/", "", false)
+                    .trim()
+                registerStudent(User(_username, _studentId, _studentName, "student","$email@nit.ac.tz"))
             }
         }
 
@@ -84,11 +87,8 @@ class RegisterActivity : AppCompatActivity() {
                 else{
                     Toast.makeText(this@RegisterActivity, "Not exist userId", Toast.LENGTH_SHORT).show()
                     databaseReference.child(userId).setValue(user)
-                    //converting the student Id to Email for registration
-                    val email = user.userId.lowercase()
-                        .replace("/", "", false)
-                        .trim()
-                    createUser(password = password.text.toString().trim(), email = "$email@nit.ac.tz")
+
+                    createUser(password = password.text.toString().trim(), email = user.email)
                 }
             }
 
