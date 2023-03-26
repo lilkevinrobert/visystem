@@ -1,37 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardCodedText"
-    tools:context=".lecturer.UploadMaterialActivity">
+    android:layout_weight="10"
+    android:orientation="vertical"
+    tools:context=".lecturer.UploadMaterialActivity"
+    tools:ignore="HardCodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.5"
+        android:gravity="center_vertical"
+        android:text="Upload Material"
+        android:textColor="@color/purple_500"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+    </FrameLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pickFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight=".08"
         android:text="pick file"
         android:textStyle="bold"
-        android:layout_marginHorizontal="10dp"
-        app:cornerRadius="12dp"
-        android:layout_above="@id/fileUpload"
-        android:layout_marginBottom="15dp"
-        />
+        app:cornerRadius="12dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fileUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="15dp"
-        android:layout_centerHorizontal="true"
+        android:layout_weight=".08"
         android:text="upload file"
         android:textStyle="bold"
-        android:layout_marginHorizontal="10dp"
-        app:cornerRadius="15dp"
-        />
+        app:cornerRadius="15dp" />
 
 
-</RelativeLayout>
+</LinearLayout>
