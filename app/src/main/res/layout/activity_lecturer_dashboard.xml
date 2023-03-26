@@ -30,7 +30,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_video_fab"
+        android:id="@+id/add_new_material"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -43,13 +43,13 @@
         app:srcCompat="@drawable/baseline_note_add_24" />
 
     <TextView
-        android:id="@+id/add_video_text"
+        android:id="@+id/add_material_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="New Material"
-        app:layout_constraintBottom_toBottomOf="@+id/add_video_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_video_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_video_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/add_new_material"
+        app:layout_constraintEnd_toStartOf="@+id/add_new_material"
+        app:layout_constraintTop_toTopOf="@+id/add_new_material" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
