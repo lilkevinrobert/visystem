@@ -10,10 +10,13 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import com.example.vi_system.R
 import com.github.barteksc.pdfviewer.PDFView
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class UploadMaterialActivity : AppCompatActivity() {
     private lateinit var pickFileButton: MaterialButton
@@ -22,6 +25,9 @@ class UploadMaterialActivity : AppCompatActivity() {
     private lateinit var pdfView: PDFView
     private lateinit var materialUri: Uri
     private var isValid: Boolean = false
+
+    private val databaseReference = FirebaseDatabase.getInstance().getReference("materials")
+    private val storageReference = FirebaseStorage.getInstance().reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_material)
@@ -39,6 +45,7 @@ class UploadMaterialActivity : AppCompatActivity() {
                 if (result.resultCode == RESULT_OK) {
                     val data = result.data
                     materialUri = data!!.data!!
+                    isValid = true
                     Log.d("MATERIAL_URI", "onCreate: $materialUri")
                     pdfView.fromUri(materialUri)
                         .onLoad(object : OnLoadCompleteListener {
@@ -73,5 +80,34 @@ class UploadMaterialActivity : AppCompatActivity() {
         }
 
 
+        uploadFileButton.setOnClickListener {
+            if (!materialUri.equals(null)) {
+                uploadFile(fileUri = materialUri)
+            }
+        }
+
+
+    }
+
+    private fun uploadFile(fileUri: Uri) {
+
+    }
+
+    override fun onBackPressed() {
+        Log.d("onBackPressed".uppercase(), "onBackPressed: $isValid")
+        if (isValid) {
+            AlertDialog.Builder(this)
+                .setTitle("Discard your changes?")
+                .setMessage("Are you sure you want to close, The selected document will be discarded.")
+                .setPositiveButton("Yes") { _, _ ->
+                    startActivity(Intent(this, LecturerDashboardActivity::class.java))
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
+        } else {
+            startActivity(Intent(this, LecturerDashboardActivity::class.java))
+            finish()
+        }
     }
 }
