@@ -1,4 +1,8 @@
 package com.example.vi_system.util
 
-class Material {
+class Material(
+    var filename: String,
+    var fileUrl: String,
+) {
+    constructor() : this("", "")
 }
