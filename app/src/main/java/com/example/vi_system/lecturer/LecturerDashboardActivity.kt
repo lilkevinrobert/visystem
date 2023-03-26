@@ -1,5 +1,6 @@
 package com.example.vi_system.lecturer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -40,8 +41,8 @@ class LecturerDashboardActivity : AppCompatActivity() {
         }
 
         addMaterialFAB.setOnClickListener {
-            val dialogFragment = NewMaterialDialogFragment()
-            dialogFragment.show(supportFragmentManager,"upload")
+            val intent: Intent = Intent(this,UploadMaterialActivity::class.java)
+            startActivity(intent)
         }
 
     }
