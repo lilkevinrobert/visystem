@@ -26,15 +26,17 @@
         <activity
             android:name=".lecturer.LecturerDashboardActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".admin.AdminDashboardActivity"
+            android:theme="@style/Theme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".admin.AdminDashboardActivity"
-            android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"
             android:exported="false" />
