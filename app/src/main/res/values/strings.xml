@@ -10,5 +10,6 @@
     <string name="confirm_password">confirm password</string>
     <string name="register">register button</string>
 
-    <!-- Login student attributes   -->
+    <string name="openNavDrawer">Navigation Drawer Open</string>
+    <string name="closeNavDrawer">Navigation Drawer Closed</string>
 </resources>
