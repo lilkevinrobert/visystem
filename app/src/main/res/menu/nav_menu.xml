@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardCodedText">
+
+    <item
+        android:id="@+id/admin"
+        android:title="Management">
+        <menu>
+            <item
+                android:id="@+id/dashboard"
+                android:icon="@drawable/baseline_home_24"
+                android:title="Dashboard" />
+
+            <item
+                android:id="@+id/lecturers"
+                android:icon="@drawable/round_person_24"
+                android:title="Item 5" />
+
+            <item
+                android:id="@+id/students"
+                android:icon="@drawable/baseline_school_24"
+                android:title="Students" />
+
+            <item
+                android:id="@+id/materials"
+                android:icon="@drawable/baseline_menu_book_24"
+                android:title="Materials" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/features"
+        android:title="App">
+        <menu>
+            <item
+                android:id="@+id/setting"
+                android:icon="@drawable/baseline_settings_24"
+                android:title="Dashboard" />
+
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/baseline_logout_24"
+                android:title="Item 5" />
+        </menu>
+    </item>
+</menu>
