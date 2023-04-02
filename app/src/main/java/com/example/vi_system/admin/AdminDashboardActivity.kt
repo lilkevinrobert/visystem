@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView
 class AdminDashboardActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var toolbar: MaterialToolbar
+    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     override fun onCreate(savedInstanceState: Bundle?) {

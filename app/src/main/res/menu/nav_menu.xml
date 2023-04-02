@@ -15,7 +15,7 @@
             <item
                 android:id="@+id/lecturers"
                 android:icon="@drawable/round_person_24"
-                android:title="Item 5" />
+                android:title="Teachers" />
 
             <item
                 android:id="@+id/students"
@@ -36,12 +36,12 @@
             <item
                 android:id="@+id/setting"
                 android:icon="@drawable/baseline_settings_24"
-                android:title="Dashboard" />
+                android:title="Settings" />
 
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/baseline_logout_24"
-                android:title="Item 5" />
+                android:title="Logout" />
         </menu>
     </item>
 </menu>
