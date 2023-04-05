@@ -1,6 +1,7 @@
 package com.example.vi_system.admin
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.vi_system.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -68,6 +70,25 @@ class AdminDashboardActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        when(item.itemId){
+            R.id.dashboard -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+
+            }
+
+            R.id.lecturers ->{
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+            R.id.students -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
+            R.id.materials -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+        }
+
+        return true
     }
 }
