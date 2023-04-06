@@ -7,25 +7,28 @@
         android:id="@+id/admin"
         android:title="Management">
         <menu>
-            <item
-                android:id="@+id/dashboard"
-                android:icon="@drawable/baseline_home_24"
-                android:title="Dashboard" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/dashboard"
+                    android:icon="@drawable/baseline_home_24"
+                    android:title="Dashboard" />
 
-            <item
-                android:id="@+id/lecturers"
-                android:icon="@drawable/round_person_24"
-                android:title="Teachers" />
+                <item
+                    android:id="@+id/lecturers"
+                    android:icon="@drawable/round_person_24"
+                    android:title="Teachers" />
 
-            <item
-                android:id="@+id/students"
-                android:icon="@drawable/baseline_school_24"
-                android:title="Students" />
+                <item
+                    android:id="@+id/students"
+                    android:icon="@drawable/baseline_school_24"
+                    android:title="Students" />
 
-            <item
-                android:id="@+id/materials"
-                android:icon="@drawable/baseline_menu_book_24"
-                android:title="Materials" />
+                <item
+                    android:id="@+id/materials"
+                    android:icon="@drawable/baseline_menu_book_24"
+                    android:title="Materials" />
+
+            </group>
         </menu>
     </item>
 
@@ -33,15 +36,19 @@
         android:id="@+id/features"
         android:title="App">
         <menu>
-            <item
-                android:id="@+id/setting"
-                android:icon="@drawable/baseline_settings_24"
-                android:title="Settings" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/setting"
+                    android:icon="@drawable/baseline_settings_24"
+                    android:title="Settings" />
 
-            <item
-                android:id="@+id/logout"
-                android:icon="@drawable/baseline_logout_24"
-                android:title="Logout" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/baseline_logout_24"
+                    android:title="Logout" />
+            </group>
+
         </menu>
+
     </item>
 </menu>
