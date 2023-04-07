@@ -63,8 +63,6 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
         })
 
 
-
-
         //Setting All Fab items gone
         addMaterialFAB.visibility = View.GONE
         newMaterialTextView.visibility = View.GONE

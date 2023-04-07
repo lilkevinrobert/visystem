@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Visystem"
         tools:targetApi="31">
         <activity
+            android:name=".admin.ViewMaterialActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AddMaterialActivity"
             android:exported="false" />
         <activity
