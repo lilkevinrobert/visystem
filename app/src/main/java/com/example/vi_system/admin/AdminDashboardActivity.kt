@@ -17,7 +17,6 @@ import com.example.vi_system.admin.fragments.DashboardFragment
 import com.example.vi_system.admin.fragments.LecturerFragment
 import com.example.vi_system.admin.fragments.MaterialFragment
 import com.example.vi_system.admin.fragments.StudentFragment
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity(),
