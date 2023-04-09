@@ -19,6 +19,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
+
     private lateinit var openLoginActivity: TextView
     private lateinit var username: EditText
     private lateinit var studentId: EditText
@@ -67,7 +68,6 @@ class RegisterActivity : AppCompatActivity() {
                 registerStudent(User(_username, _studentId, _studentName, "student","$email@nit.ac.tz"))
             }
         }
-
 
         openLoginActivity.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
