@@ -24,6 +24,16 @@
                     android:title="Students" />
 
                 <item
+                    android:id="@+id/subject"
+                    android:icon="@drawable/baseline_subject_24"
+                    android:title="Subjects" />
+
+                <item
+                    android:id="@+id/quiz"
+                    android:icon="@drawable/baseline_quiz_24"
+                    android:title="Quizzes" />
+
+                <item
                     android:id="@+id/materials"
                     android:icon="@drawable/baseline_menu_book_24"
                     android:title="Materials" />

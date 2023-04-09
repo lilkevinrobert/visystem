@@ -13,10 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.vi_system.R
-import com.example.vi_system.admin.fragments.DashboardFragment
-import com.example.vi_system.admin.fragments.LecturerFragment
-import com.example.vi_system.admin.fragments.MaterialFragment
-import com.example.vi_system.admin.fragments.StudentFragment
+import com.example.vi_system.admin.fragments.*
 import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity(),
@@ -99,6 +96,15 @@ class AdminDashboardActivity : AppCompatActivity(),
                 drawerLayout.closeDrawer(GravityCompat.START)
                 fragmentReplacement(StudentFragment())
             }
+            R.id.subject -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                fragmentReplacement(SubjectFragment())
+            }
+
+            R.id.quiz -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                fragmentReplacement(QuizFragment())
+            }
             R.id.materials -> {
                 drawerLayout.closeDrawer(GravityCompat.START)
                 fragmentReplacement(MaterialFragment())
@@ -110,11 +116,8 @@ class AdminDashboardActivity : AppCompatActivity(),
             R.id.logout -> {
                 drawerLayout.closeDrawer(GravityCompat.START)
                 signOut()
-
             }
-
         }
-
         return true
     }
 
