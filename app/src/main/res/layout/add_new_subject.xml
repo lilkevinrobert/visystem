@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:layout_marginVertical="20dp"
         android:background="@drawable/new_subject_shape"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -46,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:hint="subject Code">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,15 +62,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="35dp"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
             android:weightSum="2">
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginEnd="2dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:text="test"
@@ -79,7 +79,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/purple_500"
                 android:text="test 32"
