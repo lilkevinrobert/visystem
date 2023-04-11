@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vi_system.R
 import com.example.vi_system.admin.dialogs.AddSubject
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class SubjectFragment : Fragment() {
+class SubjectFragment : Fragment(), AddSubject.SubjectDialogListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var addSubjectFab: FloatingActionButton
 
@@ -22,10 +23,19 @@ class SubjectFragment : Fragment() {
         addSubjectFab = view.findViewById(R.id.add_subject_fab)
 
         addSubjectFab.setOnClickListener {
-            val newFragment = AddSubject()
-            newFragment.show(childFragmentManager, "subject")
+            val dialog = AddSubject()
+            dialog.setTargetFragment(this, 0)
+            dialog.show(childFragmentManager, "subject")
         }
         return view
+    }
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        Toast.makeText(requireContext(), "positive button", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {
+        Toast.makeText(requireContext(), "negative button", Toast.LENGTH_SHORT).show()
     }
 
 }
