@@ -1,15 +1,19 @@
 package com.example.vi_system.admin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vi_system.R
 import com.example.vi_system.admin.dialogs.AddSubject
+import com.example.vi_system.util.Subject
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SubjectFragment : Fragment(), AddSubject.SubjectDialogListener {
@@ -23,19 +27,22 @@ class SubjectFragment : Fragment(), AddSubject.SubjectDialogListener {
         addSubjectFab = view.findViewById(R.id.add_subject_fab)
 
         addSubjectFab.setOnClickListener {
-            val dialog = AddSubject()
-            dialog.setTargetFragment(this, 0)
-            dialog.show(childFragmentManager, "subject")
+
+            val fm: FragmentManager? = fragmentManager
+            val dialogFragment : AddSubject = AddSubject()
+            // SETS the target fragment for use later when sending results
+            // SETS the target fragment for use later when sending results
+            dialogFragment.setTargetFragment(this@SubjectFragment, 300)
+            dialogFragment.show(fm!!, "dialogFragment")
         }
         return view
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        Toast.makeText(requireContext(), "positive button", Toast.LENGTH_SHORT).show()
+    override fun onDialogPositiveClick(subject: Subject) {
+        Toast.makeText(requireContext(), "Added successfully", Toast.LENGTH_LONG).show()
+        Log.d("SUBJECT_CODE", "onDialogPositiveClick: ${subject.subjectCode}")
+        Log.d("SUBJECT_NAME", "onDialogPositiveClick: ${subject.subjectName}")
     }
 
-    override fun onDialogNegativeClick(dialog: DialogFragment) {
-        Toast.makeText(requireContext(), "negative button", Toast.LENGTH_SHORT).show()
-    }
 
 }

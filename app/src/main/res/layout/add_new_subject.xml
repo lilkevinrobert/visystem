@@ -68,6 +68,7 @@
             android:weightSum="2">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/negativeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
@@ -78,6 +79,7 @@
                 android:textStyle="normal" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/positiveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -88,7 +90,5 @@
                 android:textStyle="normal" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>
