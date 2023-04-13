@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vi_system.R
 import com.example.vi_system.admin.dialogs.AddSubject
+import com.example.vi_system.util.Material
 import com.example.vi_system.util.Subject
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.FirebaseDatabase
 
 class SubjectFragment : Fragment(), AddSubject.SubjectDialogListener {
     private lateinit var recyclerView: RecyclerView
@@ -39,9 +41,15 @@ class SubjectFragment : Fragment(), AddSubject.SubjectDialogListener {
     }
 
     override fun onDialogPositiveClick(subject: Subject) {
-        Toast.makeText(requireContext(), "Added successfully", Toast.LENGTH_LONG).show()
-        Log.d("SUBJECT_CODE", "onDialogPositiveClick: ${subject.subjectCode}")
-        Log.d("SUBJECT_NAME", "onDialogPositiveClick: ${subject.subjectName}")
+        //Firebase Realtime Database
+        val databaseReference = FirebaseDatabase.getInstance().getReference("subjects")
+
+        // Push the content data to a new node in the database
+        val newContentRef = databaseReference.push()
+        newContentRef.setValue(Subject(subject.subjectCode,subject.subjectName,null))
+            .addOnCompleteListener {
+                Toast.makeText(requireContext(), "saved successfully", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
