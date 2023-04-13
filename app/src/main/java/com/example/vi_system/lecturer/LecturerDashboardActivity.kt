@@ -23,6 +23,8 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
     private lateinit var newMaterialTextView: TextView
     private lateinit var materialFAB: FloatingActionButton
     private lateinit var addMaterialFAB: FloatingActionButton
+    private lateinit var newQuizFAB: FloatingActionButton
+    private lateinit var newQuizTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var dataList: ArrayList<Material>
     private lateinit var adapter: MaterialAdapter
@@ -34,6 +36,8 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
         materialFAB = findViewById(R.id.add_material_fab)
         addMaterialFAB = findViewById(R.id.add_new_material)
         recyclerView = findViewById(R.id.recyclerView)
+        newQuizFAB = findViewById(R.id.add_new_quiz)
+        newQuizTextView = findViewById(R.id.add_quiz_text)
 
 
         recyclerView.setHasFixedSize(true)
@@ -66,6 +70,8 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
         //Setting All Fab items gone
         addMaterialFAB.visibility = View.GONE
         newMaterialTextView.visibility = View.GONE
+        newQuizFAB.visibility = View.GONE
+        newQuizTextView.visibility = View.GONE
 
         // to check whether sub FAB buttons are visible or not.
         var isFabVisible = false
@@ -73,10 +79,14 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
             if (!isFabVisible) {
                 addMaterialFAB.show()
                 newMaterialTextView.visibility = View.VISIBLE
+                newQuizFAB.show()
+                newQuizTextView.visibility = View.VISIBLE
                 isFabVisible = true;
             } else {
                 addMaterialFAB.hide()
                 newMaterialTextView.visibility = View.GONE
+                newQuizFAB.hide()
+                newQuizTextView.visibility = View.GONE
                 isFabVisible = false;
             }
         }
@@ -84,6 +94,10 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
         addMaterialFAB.setOnClickListener {
             val intent: Intent = Intent(this,UploadMaterialActivity::class.java)
             startActivity(intent)
+        }
+        
+        newQuizFAB.setOnClickListener {
+            Toast.makeText(this, "working quiz", Toast.LENGTH_SHORT).show()
         }
 
     }

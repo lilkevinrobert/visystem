@@ -28,13 +28,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="Add new Video" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="New Quiz"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_new_material"
+        app:layout_constraintEnd_toEndOf="@+id/add_new_material"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_new_material"
+        app:srcCompat="@drawable/baseline_quiz_24" />
+
+    <TextView
+        android:id="@+id/add_quiz_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="New Quiz"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/add_new_quiz"
+        app:layout_constraintEnd_toStartOf="@+id/add_new_quiz"
+        app:layout_constraintTop_toTopOf="@+id/add_new_quiz" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_new_material"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:contentDescription="TODO"
+        android:contentDescription="New Material"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/add_material_fab"
         app:layout_constraintEnd_toEndOf="@+id/add_material_fab"
@@ -48,6 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="New Material"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/add_new_material"
         app:layout_constraintEnd_toStartOf="@+id/add_new_material"
         app:layout_constraintTop_toTopOf="@+id/add_new_material" />
