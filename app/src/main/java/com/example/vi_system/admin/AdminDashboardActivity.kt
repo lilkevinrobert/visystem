@@ -1,6 +1,7 @@
 package com.example.vi_system.admin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -25,12 +26,24 @@ class AdminDashboardActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_dashboard)
+
+        val isStudentNavToBeSelected: Boolean = intent.getBooleanExtra("studentFragment",false)
+        Log.d("studentFragment".uppercase(), "onCreate:$isStudentNavToBeSelected ")
+
         if (savedInstanceState == null){
-            supportFragmentManager
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.fragment_container_view,DashboardFragment::class.java,null)
-                .commit()
+            if (isStudentNavToBeSelected){
+                supportFragmentManager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragment_container_view,StudentFragment::class.java,null)
+                    .commit()
+            }else{
+                supportFragmentManager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view,DashboardFragment::class.java,null)
+                    .commit()
+            }
         }
 
         toolbar =  findViewById(R.id.toolbar)
