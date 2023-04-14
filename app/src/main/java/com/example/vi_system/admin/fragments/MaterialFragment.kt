@@ -76,11 +76,11 @@ class MaterialFragment : Fragment() , MaterialAdapter.OnMaterialClickListener{
             if (!isFabVisible) {
                 newMaterialFab.show()
                 newMaterialTextView.visibility = View.VISIBLE
-                isFabVisible = true;
+                isFabVisible = true
             } else {
                 newMaterialFab.hide()
                 newMaterialTextView.visibility = View.GONE
-                isFabVisible = false;
+                isFabVisible = false
             }
         }
 
