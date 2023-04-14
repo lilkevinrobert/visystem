@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="6dp"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="6dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp"
     android:layout_marginTop="10dp"
     android:layout_marginVertical="10dp"
     tools:ignore="HardCodedText">
@@ -15,6 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
 
@@ -37,11 +38,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
-                    android:letterSpacing=".1"
                     android:text="username"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textColor="@color/purple_500"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -59,11 +59,21 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:padding="3dp"
-                android:text="description"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp" />
+                android:text="student name"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/studentId"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="student Id"
+                android:textColor="@color/black"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:textSize="11sp" />
 
         </LinearLayout>
     </LinearLayout>

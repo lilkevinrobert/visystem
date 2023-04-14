@@ -96,7 +96,6 @@ class AdminDashboardActivity : AppCompatActivity(),
             R.id.dashboard -> {
                 drawerLayout.closeDrawer(GravityCompat.START)
                 //item.isChecked = true
-                Toast.makeText(this, "dashboard", Toast.LENGTH_SHORT).show()
                 fragmentReplacement(DashboardFragment())
             }
 
