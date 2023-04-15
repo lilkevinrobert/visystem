@@ -149,6 +149,7 @@ class AdminDashboardActivity : AppCompatActivity(),
         //sign out the user to login page
         Firebase.auth.signOut()
         startActivity(Intent(this,LoginActivity::class.java))
+        Toast.makeText(this,"Logout Successfully",Toast.LENGTH_LONG).show()
         finish()
     }
 }
