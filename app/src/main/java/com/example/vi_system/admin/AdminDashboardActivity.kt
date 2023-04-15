@@ -1,5 +1,6 @@
 package com.example.vi_system.admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -15,7 +16,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.vi_system.R
 import com.example.vi_system.admin.fragments.*
+import com.example.vi_system.auth.LoginActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AdminDashboardActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
@@ -141,9 +145,10 @@ class AdminDashboardActivity : AppCompatActivity(),
             .commit()
     }
 
-    fun signOut(){
+    private fun signOut(){
         //sign out the user to login page
-        Toast.makeText(this, "sign out", Toast.LENGTH_SHORT).show()
-
+        Firebase.auth.signOut()
+        startActivity(Intent(this,LoginActivity::class.java))
+        finish()
     }
 }

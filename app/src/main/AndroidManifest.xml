@@ -43,8 +43,6 @@
         <activity
             android:name=".admin.AdminDashboardActivity"
             android:exported="true">
-
-
         </activity>
         <activity
             android:name=".auth.RegisterActivity"
