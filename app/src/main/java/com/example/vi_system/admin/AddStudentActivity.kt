@@ -70,8 +70,6 @@ class AddStudentActivity : AppCompatActivity() {
             }
         }
 
-
-
     }
 
     private fun registerStudent(user: User) {
