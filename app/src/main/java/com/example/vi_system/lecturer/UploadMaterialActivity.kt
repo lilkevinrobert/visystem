@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.vi_system.R
 import com.example.vi_system.util.Material
 import com.github.barteksc.pdfviewer.PDFView
@@ -22,20 +23,31 @@ import com.google.android.material.button.MaterialButton
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.itextpdf.text.pdf.PdfReader
+import com.itextpdf.text.pdf.parser.PdfTextExtractor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
+import kotlin.math.log
 
 class UploadMaterialActivity : AppCompatActivity() {
     private lateinit var pickFileButton: MaterialButton
     private lateinit var uploadFileButton: MaterialButton
     private lateinit var progressBar: ProgressBar
     private lateinit var pdfView: PDFView
+    private val PRIMARY: String = "primary"
+    private val LOCAL_STORAGE = "/storage/self/primary/"
 
     private var materialUri: Uri? = null
     private var isValid: Boolean = false
 
     private val databaseReference = FirebaseDatabase.getInstance().getReference("materials")
     private val storageReference = FirebaseStorage.getInstance().reference
+    private var holder: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_material)
 
@@ -96,44 +108,78 @@ class UploadMaterialActivity : AppCompatActivity() {
                 Toast.makeText(this, "Choose a file for upload..", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     private fun uploadFile(fileUri: Uri?) {
-        val filename: String? = getFileName(contentResolver, fileUri!!)
-        var filenameUrl: String
+        lifecycleScope.launch {
+            Log.d("HOLDER", "onCreate: $fileUri")
+            val extractedData:String = extractData(fileUri!!)!!
 
-        //Firebase Storage
-        val storageReference: StorageReference =
-            FirebaseStorage.getInstance().reference.child("materials")
-        val materialRef =
-            storageReference.child(UUID.randomUUID().toString() + ".pdf")
 
-        //Firebase Realtime Database
-        val databaseReference = FirebaseDatabase.getInstance().getReference("materials")
 
-        materialRef.putFile(fileUri)
-            .addOnCompleteListener {
-                materialRef.downloadUrl.addOnSuccessListener { uri ->
-                    filenameUrl = uri.toString()
+            val filename: String? = getFileName(contentResolver, fileUri!!)
+            var filenameUrl: String
 
-                    // Push the content data to a new node in the database
-                    val newContentRef = databaseReference.push()
-                    newContentRef.setValue(
-                        Material(
-                            filename = filename!!,
-                            fileUrl = filenameUrl
+            //Firebase Storage
+            val storageReference: StorageReference =
+                FirebaseStorage.getInstance().reference.child("materials")
+            val materialRef =
+                storageReference.child(UUID.randomUUID().toString() + ".pdf")
+
+            //Firebase Realtime Database
+            val databaseReference = FirebaseDatabase.getInstance().getReference("materials")
+
+            materialRef.putFile(fileUri)
+                .addOnCompleteListener {
+                    materialRef.downloadUrl.addOnSuccessListener { uri ->
+                        filenameUrl = uri.toString()
+
+                        // Push the content data to a new node in the database
+                        val newContentRef = databaseReference.push()
+                        newContentRef.setValue(
+                            Material(
+                                filename = filename!!,
+                                fileUrl = filenameUrl,
+                                contents = extractedData
+                            )
                         )
-                    )
+                    }
+                }.addOnSuccessListener { task ->
+                    if (task.task.isSuccessful) {
+                        Toast.makeText(applicationContext, "successfully uploaded", Toast.LENGTH_LONG).show()
+                        startActivity(Intent(applicationContext, LecturerDashboardActivity::class.java))
+                        finish()
+                    }
                 }
-            }.addOnSuccessListener { task ->
-                if (task.task.isSuccessful) {
-                    Toast.makeText(this, "successfully uploaded", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, LecturerDashboardActivity::class.java))
-                    finish()
+
+        }
+
+
+    }
+
+    private suspend fun extractData(fileUri: Uri): String? {
+        try {
+            val contentResolver = applicationContext.contentResolver
+            val inputStream = contentResolver.openInputStream(fileUri)
+            val pdfReader = PdfReader(inputStream)
+            val n = pdfReader.numberOfPages
+            var extractedText = ""
+
+            for (i in 0 until n) {
+                val pageText = withContext(Dispatchers.IO) {
+                    PdfTextExtractor.getTextFromPage(pdfReader, i + 1).trim { it <= ' ' }
                 }
+                extractedText = "$extractedText$pageText\n"
             }
 
-
+            Log.d("EXTRACTED_TEXT", "extractData: $extractedText")
+            pdfReader.close()
+            return extractedText
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     private fun getFileName(resolver: ContentResolver, uri: Uri): String? {

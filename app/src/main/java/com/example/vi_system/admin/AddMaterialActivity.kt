@@ -41,7 +41,6 @@ class AddMaterialActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         pdfView = findViewById(R.id.pdfView)
 
-
         val activityResultLauncher =
             registerForActivityResult<Intent, ActivityResult>(ActivityResultContracts.StartActivityForResult()) { result ->
                 // Show the progress bar before setting the document
@@ -127,7 +126,8 @@ class AddMaterialActivity : AppCompatActivity() {
                     newContentRef.setValue(
                         Material(
                             filename = filename!!,
-                            fileUrl = filenameUrl
+                            fileUrl = filenameUrl,
+                            contents = ""
                         )
                     )
                 }

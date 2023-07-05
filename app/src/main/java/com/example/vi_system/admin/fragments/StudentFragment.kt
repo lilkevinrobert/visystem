@@ -45,6 +45,7 @@ class StudentFragment : Fragment(), StudentAdapter.OnStudentClickListener {
         newStudentFab = view.findViewById(R.id.add_new_student)
         newStudentTextView = view.findViewById(R.id.add_student_text)
 
+
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         dataList = ArrayList()
@@ -76,11 +77,11 @@ class StudentFragment : Fragment(), StudentAdapter.OnStudentClickListener {
             if (!isFabVisible) {
                 newStudentFab.show()
                 newStudentTextView.visibility = View.VISIBLE
-                isFabVisible = true;
+                isFabVisible = true
             } else {
                 newStudentFab.hide()
                 newStudentTextView.visibility = View.GONE
-                isFabVisible = false;
+                isFabVisible = false
             }
         }
 

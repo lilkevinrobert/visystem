@@ -37,7 +37,7 @@
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="9.5"
                     android:text="username"
                     android:textAllCaps="true"
                     android:textColor="@color/purple_500"
@@ -48,7 +48,7 @@
                     android:id="@+id/moreButton"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight=".5"
                     android:contentDescription="More"
                     android:src="@drawable/baseline_more_vert_24" />
             </LinearLayout>
