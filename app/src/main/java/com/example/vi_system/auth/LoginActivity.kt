@@ -1,5 +1,6 @@
 package com.example.vi_system.auth
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var dialog: ProgressDialog
     companion object ROLE{
         private const val USER_ID = ""
     }
@@ -78,6 +80,42 @@ class LoginActivity : AppCompatActivity() {
         if(currentUser != null){
             //reload()
             Log.d("EMAIL", "onStart: ${currentUser.email?.trim()}")
+            retrieveUserRoleByEmail(currentUser.email?.trim().toString())
+
+            //loading dialog.
+            dialog =  ProgressDialog(this)
+            dialog.setMessage("Loading..")
+            dialog.show()
+
+             /*
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("/users")
+            //val email: String = currentUser.email?.trim()!! // Replace with the email you want to search for
+            val email: String = "tudom201900589@nit.ac.tz" // Replace with the email you want to search for
+
+            val valueEventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (snapshot in dataSnapshot.children) {
+                        val user = snapshot.getValue(User::class.java)
+                        if (user?.email == email) {
+                            val role = user.role
+                            // Use the retrieved "role" value
+                            // For example:
+                            println("Role: $role")
+                            Log.d("ROLE", "Function One: ${role}")
+                            break
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d("ROLE_FAILED", "onStart: ${databaseError.message}")
+                }
+            }
+            databaseReference.addListenerForSingleValueEvent(valueEventListener)*/
+
+
+            // The code below does nothing and can be removed
             val query: Query = databaseReference.orderByValue().equalTo(currentUser.email?.trim())
             query.addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -86,11 +124,43 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+
                 }
             })
 
         }
+    }
+
+
+    fun retrieveUserRoleByEmail(email: String) {
+
+        Log.d("ROLE", "onStart inside retrieveuser: $email")
+
+        val database = FirebaseDatabase.getInstance()
+        val reference = database.getReference("/users")
+
+        reference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (userSnapshot in dataSnapshot.children) {
+                    val role = userSnapshot.child("role").getValue(String::class.java)
+                    if (role != null) {
+                        // Use the retrieved "role" value
+                        println("User Role: $role")
+                        Log.d("ROLE", "onStart Function Two: ${role}")
+                        redirectUser(role.toString())
+                    } else {
+                        // Handle case where "role" value is null
+                        println("User role not found.")
+                        redirectUser(null)
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the
+                //login redirection
+                Log.d("ROLE_FAILED", "onStart: ${databaseError.message}")
+            }
+        })
     }
 
     private fun loginUser(email: String, password: String, userId: String) {
@@ -108,6 +178,32 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
+    }
+
+    private fun redirectUser(role: String?){
+        Log.d("USER_ROLE", "redirectUser: $role")
+        when (role) {
+            "student" -> {
+                val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
+                //intent.putExtra(USER_ID, user.userId)
+                startActivity(intent)
+                finish()
+            }
+            "lecturer" -> {
+                val intent = Intent(this@LoginActivity,LecturerDashboardActivity::class.java)
+                //intent.putExtra(USER_ID, user.userId)
+                startActivity(intent)
+                finish()
+            }
+            "admin" -> {
+                val intent = Intent(this@LoginActivity,AdminDashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else -> {
+                Toast.makeText(this, "Failed to Login, Try again", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 
