@@ -65,10 +65,17 @@ class RegisterActivity : AppCompatActivity() {
                 val email = _studentId.lowercase()
                     .replace("/", "", false)
                     .trim()
-                registerStudent(User(_username, _studentId, _studentName, "student","$email@nit.ac.tz"))
+                registerStudent(
+                    User(
+                        _username,
+                        _studentId,
+                        _studentName,
+                        "student",
+                        "$email@nit.ac.tz"
+                    )
+                )
             }
         }
-
         openLoginActivity.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -79,13 +86,17 @@ class RegisterActivity : AppCompatActivity() {
         val userId = user.userId.replace("/", "_", ignoreCase = true)
 
         //checking  if the userId(StudentID) already exist in the realtime database
-        databaseReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener{
+        databaseReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    Toast.makeText(this@RegisterActivity, "Student ID already exist", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    Toast.makeText(this@RegisterActivity, "Not exist userId", Toast.LENGTH_SHORT).show()
+                if (snapshot.exists()) {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Student ID already exist",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(this@RegisterActivity, "Not exist userId", Toast.LENGTH_SHORT)
+                        .show()
                     databaseReference.child(userId).setValue(user)
 
                     createUser(password = password.text.toString().trim(), email = user.email)
@@ -93,9 +104,9 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@RegisterActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, "Error: ${error.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
-
         })
 
     }
@@ -104,8 +115,7 @@ class RegisterActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         registerButton.isEnabled = false
 
-        Log.d("EmailTest", "Email: $email $password")
-        mAuth.createUserWithEmailAndPassword(email,password)
+        mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     //Here successful dialog should be implemented

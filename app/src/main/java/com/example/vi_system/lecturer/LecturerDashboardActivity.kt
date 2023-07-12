@@ -11,12 +11,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vi_system.R
+import com.example.vi_system.auth.LoginActivity
 import com.example.vi_system.util.Material
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMaterialClickListener {
 
@@ -28,6 +32,7 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
     private lateinit var recyclerView: RecyclerView
     private lateinit var dataList: ArrayList<Material>
     private lateinit var adapter: MaterialAdapter
+    private lateinit var topAppBar: MaterialToolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecturer_dashboard)
@@ -38,6 +43,20 @@ class LecturerDashboardActivity : AppCompatActivity(), MaterialAdapter.OnMateria
         recyclerView = findViewById(R.id.recyclerView)
         newQuizFAB = findViewById(R.id.add_new_quiz)
         newQuizTextView = findViewById(R.id.add_quiz_text)
+        topAppBar = findViewById(R.id.topAppBar)
+
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.signout -> {
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    Toast.makeText(this,"Logout Successfully", Toast.LENGTH_LONG).show()
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
 
 
         recyclerView.setHasFixedSize(true)
