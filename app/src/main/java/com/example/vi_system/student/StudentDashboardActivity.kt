@@ -90,12 +90,12 @@ class StudentDashboardActivity : AppCompatActivity(),
                 drawerLayout.closeDrawer(GravityCompat.START)
                 fragmentReplacement(StudentMaterialFragment())
             }
-            R.id.setting ->{
+/*            R.id.setting ->{
                 drawerLayout.closeDrawer(GravityCompat.START)
                 //navigate to setting ui
                 Toast.makeText(this, "Setting clicked", Toast.LENGTH_SHORT).show()
 
-            }
+            }*/
             R.id.logout -> {
                 drawerLayout.closeDrawer(GravityCompat.START)
                 signOut()
