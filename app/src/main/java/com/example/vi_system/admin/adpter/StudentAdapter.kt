@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vi_system.R
+import com.example.vi_system.util.Student
 import com.example.vi_system.util.User
 
 class StudentAdapter (
     private val context1: Context,
-    private val data: ArrayList<User>,
+    private val data: ArrayList<Student>,
     private val onStudentClickListener: OnStudentClickListener
 ) : RecyclerView.Adapter<StudentAdapter.MyViewHolder>() {
 
