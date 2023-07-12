@@ -47,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Add Student"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="@+id/add_new_student"
         app:layout_constraintEnd_toStartOf="@+id/add_new_student"
         app:layout_constraintTop_toTopOf="@+id/add_new_student" />
